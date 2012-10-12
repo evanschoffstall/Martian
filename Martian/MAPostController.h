@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 
 #import "MADataController.h"
+#import "MAPostCellView.h"
+
 #import "NSOutlineView+Additions.h"
 
 @interface MAPostController : NSObject <MADataControllerDelegate, NSTableViewDataSource, NSTableViewDelegate>
@@ -25,10 +27,14 @@
 @property (assign) BOOL wantsToDestoryOldData;
 @property (assign) IBOutlet MADataController * dataController;
 
+@property (strong) NSMutableDictionary * lastProperties;
+@property (strong) NSString * nextPageIdentifier;
+
 #pragma mark -
 #pragma mark Super Controller Accessors
 
 - (void)outlineViewSelectionDidChange:(MAItemNode*)item;
+- (void)boundsDidChange:(NSNotification*)notification;
 
 #pragma mark -
 

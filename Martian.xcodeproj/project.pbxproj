@@ -33,6 +33,8 @@
 		04D43CF815FE887300C549AD /* MAItemNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 0408876615FE876F008CE551 /* MAItemNode.m */; };
 		04D43CFA15FE887500C549AD /* MAOutlineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0408876815FE876F008CE551 /* MAOutlineController.m */; };
 		04D43CFE15FE90F700C549AD /* MASaveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D43CFD15FE90F700C549AD /* MASaveController.m */; };
+		04D7209F16260638008C2802 /* MAPostCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D7209E16260638008C2802 /* MAPostCellView.m */; };
+		04E8572C162772C800A4D1BB /* NSColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 04E8572B162772C800A4D1BB /* NSColor+Additions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +92,10 @@
 		04763A501600E4E100061802 /* MADataControllerDelegateProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MADataControllerDelegateProtocol.h; sourceTree = "<group>"; };
 		04D43CFC15FE90F700C549AD /* MASaveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASaveController.h; sourceTree = "<group>"; };
 		04D43CFD15FE90F700C549AD /* MASaveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASaveController.m; sourceTree = "<group>"; };
+		04D7209D16260638008C2802 /* MAPostCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAPostCellView.h; sourceTree = "<group>"; };
+		04D7209E16260638008C2802 /* MAPostCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAPostCellView.m; sourceTree = "<group>"; };
+		04E8572A162772C800A4D1BB /* NSColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+Additions.h"; sourceTree = "<group>"; };
+		04E8572B162772C800A4D1BB /* NSColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Additions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +210,8 @@
 			children = (
 				0450E6E1160368D400DD8FEB /* MAPostController.h */,
 				0450E6E2160368D400DD8FEB /* MAPostController.m */,
+				04D7209D16260638008C2802 /* MAPostCellView.h */,
+				04D7209E16260638008C2802 /* MAPostCellView.m */,
 			);
 			name = "Post View";
 			sourceTree = "<group>";
@@ -223,6 +231,8 @@
 				04763A1916000B3800061802 /* NSOutlineView+Additions.m */,
 				04763A201600DCFD00061802 /* NSString+Additions.h */,
 				04763A211600DCFD00061802 /* NSString+Additions.m */,
+				04E8572A162772C800A4D1BB /* NSColor+Additions.h */,
+				04E8572B162772C800A4D1BB /* NSColor+Additions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -365,6 +375,8 @@
 				04763A4D1600DE3600061802 /* SBJsonUTF8Stream.m in Sources */,
 				04763A4E1600DE3600061802 /* SBJsonWriter.m in Sources */,
 				0450E6E3160368D400DD8FEB /* MAPostController.m in Sources */,
+				04D7209F16260638008C2802 /* MAPostCellView.m in Sources */,
+				04E8572C162772C800A4D1BB /* NSColor+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,6 +12,7 @@
 #import "NSString+Additions.h"
 
 @implementation MADataController
+@synthesize responseData, requestConnection, wantsData;
 @synthesize delegate;
 
 - (id)init
@@ -34,7 +35,24 @@
     if (requestBody) [request setHTTPBody:requestBody];
     
     NSData * requestedData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSMutableDictionary * requestedDictionary = [[SBJsonParser new] objectWithData:requestedData];
+    NSDictionary * requestedDictionary = [self jsonDataToDictionary:requestedData];
+    
+    return requestedDictionary;
+}
+
+- (void)fetchASynchronousDatawithProperties:(NSDictionary*)properties
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[properties[@"requestURL"] URLValue]];
+    
+    [request setValue:@"A reddit client using JSON for OS X" forHTTPHeaderField:@"User-Agent"];
+    
+    if (!requestConnection)
+        requestConnection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+}
+
+- (NSDictionary*)jsonDataToDictionary:(NSData*)data
+{
+    NSMutableDictionary * requestedDictionary = [[SBJsonParser new] objectWithData:data];
     
     NSArray * errors = requestedDictionary[@"json"][@"errors"];
     
@@ -47,16 +65,30 @@
     return requestedDictionary;
 }
 
-- (void)fetchASynchronousDatawithProperties:(NSDictionary*)properties
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
-     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
-         
-         if ([delegate respondsToSelector:@selector(dataControllerHasNewData:)])
-         {
-             NSDictionary * requestedDictionary = [self fetchSynchronousDatawithProperties:properties];
-             [delegate dataControllerHasNewData:requestedDictionary];
-         }
-     });
+    [requestConnection cancel];
+    requestConnection = nil;
+    
+    NSDictionary * requestedDictionary = [self jsonDataToDictionary:responseData];
+    
+    if ([delegate respondsToSelector:@selector(dataControllerHasNewData:)]) [delegate dataControllerHasNewData:requestedDictionary];
+    
+    responseData = nil;
+    wantsData = NO;
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+    [self setResponseData:[NSMutableData new]];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    if (wantsData)
+        [responseData appendData:data];
+    else
+        requestConnection = nil;
 }
 
 @end
